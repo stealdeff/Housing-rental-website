@@ -1,10 +1,10 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html>
   <head>
     <title>Форма аренды здания</title>
   </head>
   <body>
-    <h1>Форма аренды здания</h1>
+    <center><h1>Форма аренды здания</h1></center>>
     <form action="/submit-form" method="POST">
       <label for="name">Имя:</label>
       <input type="text" id="name" name="name" required>
@@ -26,5 +26,162 @@
 
       <button type="submit">Отправить</button>
     </form>
+  </body>
+</html>
+<style>
+  body {
+  background-color: #C8CFEC;
+}
+
+form {
+  max-width: 600px;
+  margin: 0 auto;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+label {
+  display: block;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+input[type="text"],
+input[type="tel"],
+input[type="email"],
+textarea {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 3px;
+  margin-bottom: 20px;
+  box-sizing: border-box;
+  font-size: 16px;
+}
+
+input[type="submit"] {
+  background-color: #8469b8;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+input[type="submit"]:hover {
+  background-color: #6c4c9f;
+} -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Форма аренды здания</title>
+    <style>
+      body {
+        background-color:#C8CFEC;
+      }
+
+      form {
+        max-width: 600px;
+        margin: 0 auto;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+      }
+
+      label {
+        display: block;
+        margin-bottom: 10px;
+        font-weight: bold;
+      }
+
+      input[type="text"],
+      input[type="tel"],
+      input[type="email"],
+      textarea {
+        width: 100%;
+        padding: 10px;
+        border: none;
+        border-radius: 3px;
+        margin-bottom: 20px;
+        box-sizing: border-box;
+        font-size: 16px;
+      }
+
+      input[type="submit"] {
+        background-color: #8469b8;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        padding: 10px 20px;
+        font-size: 16px;
+        cursor: pointer;
+      }
+
+      input[type="submit"]:hover {
+        background-color: #6c4c9f;
+      }
+    </style>
+  </head>
+  <body>
+    <center><h1>Форма аренды здания</h1></center>>
+    <form action="/submit-form" method="POST">
+      <label for="name">Имя:</label>
+      <input type="text" id="name" name="name" required>
+      
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" required>
+      
+      <label for="phone">Телефон:</label>
+      <input type="tel" id="phone" name="phone" required>
+
+      <label for="building">Здание:</label>
+      <input type="text" id="building" name="building" required>
+
+      <label for="date">Дата аренды:</label>
+      <input type="date" id="date" name="date" required>
+
+      <label for="message">Дополнительная информация:</label>
+      <textarea id="message" name="message"></textarea>
+
+      <button type="submit">Отправить</button>
+    </form>
+
+    <p>Количество заполненных форм: <span class="form-count">0</span></p>
+
+    <script>
+      
+      // выбираем форму и добавляем обработчик отправки
+      const form = document.querySelector('form');
+      form.addEventListener('submit', handleSubmit);
+
+      // функция для обработки отправки формы
+      function handleSubmit(event) {
+        event.preventDefault(); // отменяем стандартное поведение формы
+
+        // отправляем данные формы на сервер
+        const formData = new FormData(event.target);
+        fetch('/submit-form', {
+          method: 'POST',
+          body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+          // получаем количество заполненных форм из ответа сервера
+          const count = data.count;
+
+          // показываем сообщение с количеством заполненных форм
+          alert(`Вы заполнили уже ${count} форм`);
+
+          // обновляем информацию о количестве заполненных форм на странице
+          const countElement = document.querySelector('.form-count');
+          countElement.textContent = count;
+        })
+        .catch(error => console.error(error));
+      }
+    </script>
   </body>
 </html>
