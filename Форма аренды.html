@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Форма аренды здания</title>
+  </head>
+  <body>
+    <h1>Форма аренды здания</h1>
+    <form action="/submit-form" method="POST">
+      <label for="name">Имя:</label>
+      <input type="text" id="name" name="name" required>
+      
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" required>
+      
+      <label for="phone">Телефон:</label>
+      <input type="tel" id="phone" name="phone" required>
+
+      <label for="building">Здание:</label>
+      <input type="text" id="building" name="building" required>
+
+      <label for="date">Дата аренды:</label>
+      <input type="date" id="date" name="date" required>
+
+      <label for="message">Дополнительная информация:</label>
+      <textarea id="message" name="message"></textarea>
+
+      <button type="submit">Отправить</button>
+    </form>
+  </body>
+</html>
